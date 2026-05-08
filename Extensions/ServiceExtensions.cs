@@ -1,4 +1,5 @@
 ﻿using API_FMS_FlourManagementSystem.Core.Aspects.Logging;
+using API_FMS_FlourManagementSystem.Services;
 using InvoiceMenagment.Api.CustomMiddlewares;
 using InvoiceMenagment.Api.Mapping;
 using InvoiceMenagment.Api.Repositories;
@@ -44,12 +45,14 @@ namespace InvoiceMenagment.Api.Extensions
             //services.AddScoped(typeof(IGenericService<>), typeof(GenericService<>));
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IApplicationUserService, ApplicationUserService>();
-            //services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<IPagePermissionService, PagePermissionService>();
             services.AddScoped<IPageService, PageService>();
             services.AddScoped<IPageControlService, PageControlService>();
             services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<ILicenseService, LicenseService>();
+            services.AddScoped<IMinioService, MinioService>();
+
             return services;
         }
 
