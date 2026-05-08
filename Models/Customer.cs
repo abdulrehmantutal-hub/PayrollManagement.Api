@@ -19,7 +19,6 @@ namespace InvoiceMenagment.Api.Models
         public int? AccountDetailId { get; set; }
         public int? BookerId { get; set; }
         public string? BookerName { get; set; }
-        public AccountDetail accountDetail { get; set; }
 
     }
 }

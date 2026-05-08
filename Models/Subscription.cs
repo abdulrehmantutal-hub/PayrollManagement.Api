@@ -1,7 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using InvoiceMenagment.Api.Models;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace InvoiceMenagment.Api.Models
+namespace API_FMS_FlourManagementSystem.Models
 {
     public class Subscription
     {

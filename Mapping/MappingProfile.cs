@@ -2,7 +2,6 @@
 using InvoiceMenagment.Api.DTOs.Request;
 using InvoiceMenagment.Api.DTOs.Response;
 using InvoiceMenagment.Api.Models;
-using InvoiceMenagment.Api.Models.InvoiceMenagment.Api.Models;
 using AutoMapper;
 namespace InvoiceMenagment.Api.Mapping
 {

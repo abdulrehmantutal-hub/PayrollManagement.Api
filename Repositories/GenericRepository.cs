@@ -2,7 +2,6 @@
 using Dapper;
 using InvoiceMenagment.Api.Data;
 using InvoiceMenagment.Api.Http;
-using InvoiceMenagment.Api.Models.InvoiceMenagment.Api.Models;
 using InvoiceMenagment.Api.Repositories.Interfaces;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -100,11 +99,7 @@ namespace InvoiceMenagment.Api.Repository
                 await _context.SaveChangesAsync();
             }
         }
-
-        public IQueryable<Sale> GetQueryable()
-        {
-            return _context.Set<Sale>();
-        }
+       
         public async Task<T> GetByGlobalIdAsync(Guid globalId)
         {
             return await _dbSet

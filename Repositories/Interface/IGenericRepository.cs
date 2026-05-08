@@ -1,5 +1,4 @@
 ﻿using InvoiceMenagment.Api.Http;
-using InvoiceMenagment.Api.Models.InvoiceMenagment.Api.Models;
 using Microsoft.EntityFrameworkCore.Query;
 using System.Linq.Expressions;
 
@@ -9,7 +8,6 @@ namespace InvoiceMenagment.Api.Repositories.Interfaces
     {
         Task DeleteRange(IEnumerable<T> entities);
        
-        IQueryable<Sale> GetQueryable();
         Task<IEnumerable<T>> GetAllAsync();
         Task<IEnumerable<T>> GetAllsAsync(Expression<Func<T, bool>> predicate = null);
         Task<IEnumerable<T>> GetAllsForInculdeAsync(
