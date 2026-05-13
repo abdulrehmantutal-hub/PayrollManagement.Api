@@ -71,7 +71,7 @@ namespace InvoiceMenagment.Api.CustomMiddlewares
                 return;
             }
 
-            var subscription = dbContext.Subscription
+            var subscription = dbContext.Subscriptions
                 .Where(s => s.ClientId == clientId && s.IsActive)
                 .OrderByDescending(s => s.SubscriptionEnd)
                 .FirstOrDefault();
