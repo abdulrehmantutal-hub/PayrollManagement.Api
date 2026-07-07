@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InvoiceMenagment.Api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260513100829_initialCreateFor")]
-    partial class initialCreateFor
+    [Migration("20260707085452_initialCreate")]
+    partial class initialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
