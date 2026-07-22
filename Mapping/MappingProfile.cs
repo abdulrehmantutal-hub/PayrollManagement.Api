@@ -23,6 +23,13 @@ namespace InvoiceMenagment.Api.Mapping
 
             CreateMap<RolePagePermission, RolePagePermissionResponse>();
             CreateMap<RoleControlPermission, RoleControlPermissionResponse>();
+            //Mapping Page
+            CreateMap<PagesRequest, Page>();
+            CreateMap<Page, PagesResponse>();
+
+            //Mapping Page Control
+            CreateMap<PageControlRequestDto, Control>();
+            CreateMap<Control, PageControlResponse>();
 
         }
     }
