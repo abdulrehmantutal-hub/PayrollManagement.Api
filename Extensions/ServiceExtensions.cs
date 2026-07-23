@@ -3,9 +3,11 @@ using API_FMS_FlourManagementSystem.Services;
 using InvoiceMenagment.Api.CustomMiddlewares;
 using InvoiceMenagment.Api.Mapping;
 using InvoiceMenagment.Api.Repositories;
+using InvoiceMenagment.Api.Repositories.Interface;
 using InvoiceMenagment.Api.Repositories.Interfaces;
 using InvoiceMenagment.Api.Repository;
 using InvoiceMenagment.Api.Services;
+using InvoiceMenagment.Api.Services.Interface;
 using InvoiceMenagment.Api.Services.Interfaces;
 using InvoiceMenagment.Api.UOW;
 using Minio;
@@ -36,6 +38,10 @@ namespace InvoiceMenagment.Api.Extensions
             services.AddScoped<IRoleRepository, RoleRepository>();
             services.AddScoped<IRoleControlPermissionRepository, RoleControlPermissionRepository>();
             services.AddScoped<ILicenseRepository, LicenseRepository>();
+            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            services.AddScoped<IDesignationRepository, DesignationRepository>();
+
+
             return services;
         }
 
@@ -52,6 +58,8 @@ namespace InvoiceMenagment.Api.Extensions
             services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<ILicenseService, LicenseService>();
             services.AddScoped<IMinioService, MinioService>();
+            services.AddScoped<IDepartmentService, DepartmentService>();
+            services.AddScoped<IDesignationService, DesignationService>();
 
             return services;
         }

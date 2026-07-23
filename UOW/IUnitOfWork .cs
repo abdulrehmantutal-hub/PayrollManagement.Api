@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Storage;
 using InvoiceMenagment.Api.Repositories.Interfaces;
 using InvoiceMenagment.Api.Repository;
+using InvoiceMenagment.Api.Repositories.Interface;
 
 namespace InvoiceMenagment.Api.UOW
 {
@@ -16,5 +17,10 @@ namespace InvoiceMenagment.Api.UOW
         IRoleRepository RoleRepository { get; }
         IRolePagePermissionRepository RolePagePermissionRepository { get; }
         ILicenseRepository LicenseRepository { get; }
+        IDepartmentRepository DepartmentRepository { get; }
+        IDesignationRepository DesignationRepository { get; }
+
+
+
     }
 }

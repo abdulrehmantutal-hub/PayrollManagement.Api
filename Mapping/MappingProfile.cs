@@ -1,8 +1,10 @@
-﻿using InvoiceMenagment.Api.DTOs;
+﻿using AutoMapper;
+using InvoiceMenagment.Api.DTOs;
 using InvoiceMenagment.Api.DTOs.Request;
+using InvoiceMenagment.Api.DTOs.Requests;
 using InvoiceMenagment.Api.DTOs.Response;
 using InvoiceMenagment.Api.Models;
-using AutoMapper;
+
 namespace InvoiceMenagment.Api.Mapping
 {
     public class MappingProfile : Profile
@@ -21,10 +23,21 @@ namespace InvoiceMenagment.Api.Mapping
             CreateMap<RoleControlPermissionRequest, RoleControlPermission>();
             CreateMap<RoleControlPermission, RoleControlPermissionResponse>();
 
-            CreateMap<RolePagePermission, RolePagePermissionResponse>();
-            CreateMap<RoleControlPermission, RoleControlPermissionResponse>();
+            CreateMap<PagesRequest, Page>();
+            CreateMap<Page, PagesResponse>();
 
+            //Mapping Page Control
+            CreateMap<PageControlRequestDto, Control>();
+            CreateMap<Control, PageControlResponse>();
+
+            CreateMap<CreateDepartmentRequest, Department>();
+            CreateMap<UpdateDepartmentRequest, Department>();
+            CreateMap<Department, DepartmentResponse>();
+
+            // Mapping Designation
+            CreateMap<DesignationRequest, Designation>();
+            CreateMap<Designation, DesignationResponse>()
+                .ForMember(dest => dest.DepartmentName, opt => opt.MapFrom(src => src.Department != null ? src.Department.DepartmentName : null));
         }
     }
-
 }

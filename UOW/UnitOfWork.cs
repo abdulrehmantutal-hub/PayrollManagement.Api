@@ -3,7 +3,8 @@ using InvoiceMenagment.Api.Repositories;
 using InvoiceMenagment.Api.Repositories.Interfaces;
 using InvoiceMenagment.Api.Repository;
 using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.EntityFrameworkCore; 
+using Microsoft.EntityFrameworkCore;
+using InvoiceMenagment.Api.Repositories.Interface;
 namespace InvoiceMenagment.Api.UOW
 {
     public class UnitOfWork : IUnitOfWork
@@ -19,6 +20,10 @@ namespace InvoiceMenagment.Api.UOW
         private readonly IRoleControlPermissionRepository _roleControlPermissionRepository;
         private readonly IRolePagePermissionRepository _rolePagePermissionRepository;
         private readonly ILicenseRepository _licenseRepository;
+        private readonly IDepartmentRepository _departmentRepository;
+        private readonly IDesignationRepository _designationRepository;
+
+
 
         #endregion
 
@@ -31,6 +36,10 @@ namespace InvoiceMenagment.Api.UOW
         public IRolePagePermissionRepository RolePagePermissionRepository => _rolePagePermissionRepository;
         public IRoleControlPermissionRepository RoleControlPermissionRepository => _roleControlPermissionRepository;
         public ILicenseRepository LicenseRepository => _licenseRepository;
+        public IDepartmentRepository DepartmentRepository => _departmentRepository;
+        public IDesignationRepository DesignationRepository => _designationRepository;
+
+
 
 
         #endregion
@@ -44,7 +53,9 @@ namespace InvoiceMenagment.Api.UOW
         IRoleRepository roleRepository,
         IRolePagePermissionRepository rolePagePermissionRepository,
         IRoleControlPermissionRepository roleControlPermissionRepository,
-        ILicenseRepository licenseRepository
+        ILicenseRepository licenseRepository,
+        IDepartmentRepository departmentRepository,
+        IDesignationRepository designationRepository
           )
         {
             _context = context;
@@ -55,6 +66,8 @@ namespace InvoiceMenagment.Api.UOW
             _rolePagePermissionRepository = rolePagePermissionRepository;
             _roleControlPermissionRepository = roleControlPermissionRepository;
             _licenseRepository = licenseRepository;
+            _departmentRepository = departmentRepository;
+            _designationRepository = designationRepository;
             _repositories = new Dictionary<string, object>();
         }
         #endregion
@@ -79,7 +92,7 @@ namespace InvoiceMenagment.Api.UOW
         }
 
 
-        public DbContext Context => _context; 
+        public DbContext Context => _context;
         public async Task<int> SaveChangesAsync()
         {
             try

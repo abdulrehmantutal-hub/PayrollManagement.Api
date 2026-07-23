@@ -39,8 +39,13 @@ using InvoiceMenagment.Api.DTOs.Response;
             public DbSet<Subscription> Subscriptions { get; set; }
             public DbSet<Client> Client { get; set; }
             public DbSet<LicenseLog> LicenseLog { get; set; }
+        //public IEnumerable<object> Departments { get; internal set; }
+        public DbSet<Department> Departments { get; set; }
 
-            protected override void OnModelCreating(ModelBuilder modelBuilder)
+        public DbSet<Designation> Designations { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
             {
                 base.OnModelCreating(modelBuilder);
             }
