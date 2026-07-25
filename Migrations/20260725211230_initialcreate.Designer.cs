@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InvoiceMenagment.Api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260723100649_AddDepartmentsTable")]
-    partial class AddDepartmentsTable
+    [Migration("20260725211230_initialcreate")]
+    partial class initialcreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -400,6 +400,53 @@ namespace InvoiceMenagment.Api.Migrations
                     b.ToTable("Departments");
                 });
 
+            modelBuilder.Entity("InvoiceMenagment.Api.Models.Designation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<long>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("DepartmentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DesignationTitle")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<Guid>("GlobalId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("ModifiedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DepartmentId");
+
+                    b.ToTable("Designations");
+                });
+
             modelBuilder.Entity("InvoiceMenagment.Api.Models.LicenseLog", b =>
                 {
                     b.Property<Guid>("Id")
@@ -757,6 +804,15 @@ namespace InvoiceMenagment.Api.Migrations
                         .HasForeignKey("RoleId");
 
                     b.Navigation("Role");
+                });
+
+            modelBuilder.Entity("InvoiceMenagment.Api.Models.Designation", b =>
+                {
+                    b.HasOne("InvoiceMenagment.Api.Models.Department", "Department")
+                        .WithMany()
+                        .HasForeignKey("DepartmentId");
+
+                    b.Navigation("Department");
                 });
 
             modelBuilder.Entity("InvoiceMenagment.Api.Models.LicenseLog", b =>

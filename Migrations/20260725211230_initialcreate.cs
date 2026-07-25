@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace InvoiceMenagment.Api.Migrations
 {
     /// <inheritdoc />
-    public partial class initialCreate : Migration
+    public partial class initialcreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -124,6 +124,28 @@ namespace InvoiceMenagment.Api.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_customers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Departments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DepartmentName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    DepartmentCode = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    GlobalId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<long>(type: "bigint", nullable: false),
+                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedBy = table.Column<long>(type: "bigint", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Departments", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -266,6 +288,33 @@ namespace InvoiceMenagment.Api.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Designations",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DesignationTitle = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    DepartmentId = table.Column<int>(type: "int", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    GlobalId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<long>(type: "bigint", nullable: false),
+                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedBy = table.Column<long>(type: "bigint", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Designations", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Designations_Departments_DepartmentId",
+                        column: x => x.DepartmentId,
+                        principalTable: "Departments",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "applicationUser",
                 columns: table => new
                 {
@@ -377,6 +426,11 @@ namespace InvoiceMenagment.Api.Migrations
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Designations_DepartmentId",
+                table: "Designations",
+                column: "DepartmentId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_LicenseLog_ClientId",
                 table: "LicenseLog",
                 column: "ClientId");
@@ -426,6 +480,9 @@ namespace InvoiceMenagment.Api.Migrations
                 name: "customers");
 
             migrationBuilder.DropTable(
+                name: "Designations");
+
+            migrationBuilder.DropTable(
                 name: "LicenseLog");
 
             migrationBuilder.DropTable(
@@ -439,6 +496,9 @@ namespace InvoiceMenagment.Api.Migrations
 
             migrationBuilder.DropTable(
                 name: "SystemSetting");
+
+            migrationBuilder.DropTable(
+                name: "Departments");
 
             migrationBuilder.DropTable(
                 name: "rolePagePermission");
